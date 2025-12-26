@@ -1,0 +1,7 @@
+[
+  {"Name": "Alice", "Age": 25, "City": "Tokyo", "Status": "Active", "Amount": 1000},
+  {"Name": "Bob", "Age": 30, "City": "Osaka", "Status": "Inactive", "Amount": 2000},
+  {"Name": "Charlie", "Age": 35, "City": "Tokyo", "Status": "Active", "Amount": 1500},
+  {"Name": "David", "Age": 28, "City": "Kyoto", "Status": "Active", "Amount": 3000},
+  {"Name": "Eve", "Age": 32, "City": "Osaka", "Status": "Inactive", "Amount": 2500}
+]
