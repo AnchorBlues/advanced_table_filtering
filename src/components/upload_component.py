@@ -30,7 +30,7 @@ def create_upload_component(component_id: str = "upload-data") -> dcc.Upload:
             'margin': '10px'
         },
         # Allow multiple file types
-        accept='.csv,.xlsx,.xls,.json',
+        accept='.csv,.xlsx,.xls,.json,.feather,.ftr,.parquet,.pq',
         # Disable multiple file uploads for MVP
         multiple=False
     )

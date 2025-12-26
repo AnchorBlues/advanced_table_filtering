@@ -30,7 +30,7 @@ from src.utils.formatters import format_row_count
 logger = setup_logging()
 
 # Initialize Dash app
-app = Dash(__name__)
+app = Dash(__name__, suppress_callback_exceptions=True)
 app.title = "Flexible Table - Advanced Table Filtering"
 
 # App layout
@@ -88,8 +88,9 @@ def update_visible_columns(
     if not visible_columns:
         visible_columns_effective = all_columns
     else:
-        visible_set = set(visible_columns)
-        visible_columns_effective = [c for c in all_columns if c in visible_set]
+        # Respect the order in visible_columns (user selection order)
+        # instead of original dataframe order
+        visible_columns_effective = [c for c in visible_columns if c in set(all_columns)]
 
     # Reconstruct df
     df = pd.DataFrame.from_dict(table_data["dataframe_json"])
@@ -145,8 +146,8 @@ def export_filtered_csv(
     filtered_df = _apply_filter_set_to_df(df, current_filter_set, table_data.get("column_types", {}))
 
     if visible_columns:
-        # Keep original column order
-        keep_cols = [c for c in table_data.get("column_names", []) if c in set(visible_columns)]
+        # Use selection order for export
+        keep_cols = [c for c in visible_columns if c in set(table_data.get("column_names", []))]
         if keep_cols:
             filtered_df = filtered_df.loc[:, keep_cols]
 
@@ -479,11 +480,13 @@ def _apply_filter_set_to_df(df: pd.DataFrame, current_filter_set: Optional[Dict]
 
 
 def _select_table_columns(all_columns: list[str], visible_columns: Optional[list[str]]) -> list[dict]:
-    """Build DataTable columns list respecting visible column selection."""
+    """Build DataTable columns list respecting visible column selection and order."""
     if not visible_columns:
         return [{"name": col, "id": col} for col in all_columns]
-    visible_set = set(visible_columns)
-    selected = [col for col in all_columns if col in visible_set]
+    
+    all_cols_set = set(all_columns)
+    # Use the order in visible_columns (user selection order)
+    selected = [col for col in visible_columns if col in all_cols_set]
     return [{"name": col, "id": col} for col in selected]
 
 

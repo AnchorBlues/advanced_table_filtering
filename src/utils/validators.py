@@ -73,7 +73,7 @@ def validate_file_upload(file_name: str, file_content_base64: str, max_size_byte
     Returns:
         Tuple of (is_valid, error_message). If valid, error_message is None.
     """
-    allowed_extensions = ['.csv', '.xlsx', '.xls', '.json']
+    allowed_extensions = ['.csv', '.xlsx', '.xls', '.json', '.feather', '.ftr', '.parquet', '.pq']
     
     # Validate file type
     is_valid_type, type_error = validate_file_type(file_name, allowed_extensions)

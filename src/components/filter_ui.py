@@ -143,7 +143,7 @@ def create_filter_ui(
                 dcc.Input(
                     id=f"{component_id_prefix}-value",
                     type='text',
-                    placeholder="Enter filter value...",
+                    placeholder="Enter value...",
                     disabled=True,
                     style={'width': '100%', 'display': 'inline-block'}
                 ),
@@ -156,16 +156,16 @@ def create_filter_ui(
             ], id=f"{component_id_prefix}-value-container", style={'width': '300px', 'display': 'inline-block', 'verticalAlign': 'middle', 'marginRight': '10px'}),
             
             # Additional input for 'between' operator
-            html.Span(
+            html.Div([
+                html.Label("and", style={'display': 'inline-block', 'margin': '0 10px', 'verticalAlign': 'middle'}),
                 dcc.Input(
                     id=f"{component_id_prefix}-value2",
                     type='text',
                     placeholder="Max value...",
                     disabled=True,
-                    style={'width': '200px', 'display': 'none'}
+                    style={'width': '200px', 'display': 'inline-block'}
                 ),
-                id=f"{component_id_prefix}-value2-container"
-            )
+            ], id=f"{component_id_prefix}-value2-container", style={'display': 'none', 'verticalAlign': 'middle'})
         ], style={'margin': '10px 0'}),
         
         # Logic operator selection (for multiple filters)

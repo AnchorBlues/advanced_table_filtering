@@ -1,10 +1,10 @@
 # Flexible Table - Advanced Table Filtering Web Application
 
-A browser-based web application that allows users to upload table data files (CSV, Excel, JSON) and perform advanced filtering operations similar to Excel's advanced filter functionality.
+A browser-based web application that allows users to upload table data files (CSV, Excel, JSON, Feather, Parquet) and perform advanced filtering operations similar to Excel's advanced filter functionality.
 
 ## Features
 
-- **File Upload**: Support for CSV, Excel (.xlsx, .xls), and JSON file formats
+- **File Upload**: Support for CSV, Excel (.xlsx, .xls), JSON, Feather (.feather, .ftr), and Parquet (.parquet, .pq) file formats
 - **Interactive Table Display**: View tabular data in a browser with virtual scrolling for large datasets
 - **Advanced Filtering**: 
   - Single column filtering (text, numeric, date)
